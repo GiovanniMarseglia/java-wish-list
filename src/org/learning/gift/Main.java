@@ -11,17 +11,17 @@ public class Main {
         boolean flag = true;
         ArrayList<String> gift = new ArrayList<>();
         File file = new File("./resources/text.txt");
-        try (Scanner scannerReader = new Scanner(file)){
+        if (file.length()!=0) {
+            try (Scanner scannerReader = new Scanner(file)) {
 
-            while (scannerReader.hasNextLine()){
-                String line = scannerReader.nextLine();
-                gift.add(line);
+                while (scannerReader.hasNextLine()) {
+                    String line = scannerReader.nextLine();
+                    gift.add(line);
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("Impossibile leggere nel file");
             }
-
-        } catch (FileNotFoundException e){
-            System.out.println("Impossibile leggere nel file");
         }
-
 
 
         while (flag){
@@ -43,8 +43,7 @@ public class Main {
                 System.out.println("hai inserito un parametro non valido...riprova");
             }
         }
-
-
+        
 
         try (FileWriter fileWriter = new FileWriter(file)){
             for (String element : gift){
